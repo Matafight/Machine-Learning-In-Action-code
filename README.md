@@ -1,2 +1,2 @@
 # Machine-Learning-In-Action-code
-this the code I write when reading <<machine learning in action>>
+this is the code I write when reading machine learning in action
