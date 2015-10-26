@@ -3,6 +3,7 @@ __author__ = 'guo'
 
 from math import log
 import operator
+import matplotlib.pyplot as plt
 def createDataSet():
     dataset=[[1,1,'yes'],[1,1,'yes'],[1,0,'no'],[0,1,'no'],[0,1,'no']]
     labels=['no surfacing','flippers']
@@ -81,6 +82,7 @@ def createTree(dataSet,labels):
         sublabel=labels[:]
         myTree[bestfeatlabel][itemval]=createTree(splitData(dataSet,bestfeat,itemval),sublabel)
     return myTree
+
 
 
 if __name__=='__main__':
