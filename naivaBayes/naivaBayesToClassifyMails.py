@@ -20,7 +20,7 @@ def spamTest():
         classList.append(1)
         fullText.extend(text)
 
-        text2=textParse(open('email/ham/%d.txt'%i).read())
+        text=textParse(open('email/ham/%d.txt'%i).read())
 
         docList.append(text)
         classList.append(0)
@@ -41,14 +41,14 @@ def spamTest():
         del(trainingSet[testindex])
 
     for i in trainingSet:
-        trainMat.append(bagOfWords2Vec(vocabList,docList[i]))
+        trainMat.append(setOfWords2Vec(vocabList,docList[i]))
         trainClass.append(classList[i])
 
     p0v,p1v,pab=trainNaiveBayes0(trainMat,trainClass)
 
     errorcount=0.0
     for i in testSet:
-        result=classifyNB(bagOfWords2Vec(vocabList,docList[i]),p0v,p1v,pab)
+        result=int(classifyNB(setOfWords2Vec(vocabList,docList[i]),p0v,p1v,pab))
         if(result != classList[i]):
             errorcount+=1
     print("the errorrate is %f"%(float(errorcount)/len(testSet)))

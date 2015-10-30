@@ -61,9 +61,10 @@ def trainNaiveBayes0(trainMat,trainClass):
             p0num+=trainMat[i]
             p0demo+=sum(trainMat[i])
     #to avoid overflow ,we take log with the probability
+
     p1prob=log(p1num/p1demo)
     p0prob=log(p0num/p0demo)
-    ppositive=numpositive/numitems
+    ppositive=numpositive/float(numitems)
     return p0prob,p1prob,ppositive
 
 
