@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../AdaBoost/.idea/AdaBoost.iml" filepath="$PROJECT_DIR$/../AdaBoost/.idea/AdaBoost.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Logistic.iml" filepath="$PROJECT_DIR$/.idea/Logistic.iml" />
     </modules>
   </component>
