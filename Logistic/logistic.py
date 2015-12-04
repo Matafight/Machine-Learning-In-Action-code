@@ -36,6 +36,42 @@ def gradAscend(trainMat,classLabel):
         weights=weights+alpha*trainMat.transpose()*error
     return weights
 
+def stoGradAscent(trainMat,classLabel):
+    trainMat=mat(trainMat)
+    classLabel=mat(classLabel).transpose()
+    [lenitem,lenattr]=shape(trainMat)
+    weights=ones((lenattr,1))
+    alpha=0.01
+    for j in range(100):
+        for i in range(lenitem):
+            ytemp=sigmoid(trainMat[i,:]*weights)
+            error=classLabel[i]-ytemp
+            #if trainMat and classLabel is set to be mat,then the error would be a matrix with only one element ,and error* trainMat[i,:]should not work ,for it proceed the matrix multiply
+            #if you want to dot product a num and a matrix ,the convert both of them to array ,and the return type is array
+            weights=weights+alpha*array(error)*array(trainMat[i,:].transpose())
+    return weights
+
+
+
+def stoGradAscentImpro(trainMat,classLabel,numiter=500):
+    trainMat=mat(trainMat)
+    classLabel=mat(classLabel).transpose()
+    alpha=0.01
+    [m,n]=shape(trainMat)
+    weights=ones((n,1))
+    for i in range(numiter):
+        #use list to allow the range function modified
+        dataindex=list(range(m))
+        for j in range(m):
+            alpha=4/(1.0+i+j) + 0.01
+            randIndex=int(random.uniform(0,len(dataindex)))
+            ytemp=sigmoid(trainMat[randIndex,:]*weights)
+            error=classLabel[randIndex]-ytemp
+            weights=weights+alpha*array(error)*array(trainMat[randIndex,:].transpose())
+            del(dataindex[randIndex])
+    return weights
+
+
 #draw the decision boundary
 def plotBestFit(weights):
     import matplotlib.pyplot as plt
@@ -54,19 +90,21 @@ def plotBestFit(weights):
         else:
             xcord2.append(trainMat[i][1])
             ycord2.append(trainMat[i][2])
-    #what's the meaning behind this code?
+
     fig=plt.figure()
     ax=fig.add_subplot(111)
     ax.scatter(xcord1,ycord1,s=30,c='red',marker='s')
     ax.scatter(xcord2,ycord2,s=30,c='green')
     #like linspace in matlab
     x=array(arange(-3.0,3.0,0.1))
+    print(shape(weights))
     y=((-weights[0]-weights[1]*x)/weights[2]).transpose()
     ax.plot(x,y)
     plt.show()
 
 if(__name__=="__main__"):
     trainMat,labelMat=loadData()
-    weights=gradAscend(trainMat,labelMat)
+    #weights=gradAscend(trainMat,labelMat)
+    weights=stoGradAscentImpro(trainMat,labelMat)
     print(weights)
     plotBestFit(weights)
