@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../AdaBoost/.idea/AdaBoost.iml" filepath="$PROJECT_DIR$/../AdaBoost/.idea/AdaBoost.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Logistic.iml" filepath="$PROJECT_DIR$/.idea/Logistic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Regression/.idea/Regression.iml" filepath="$PROJECT_DIR$/../Regression/.idea/Regression.iml" />
     </modules>
   </component>
 </project>
